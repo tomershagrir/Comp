@@ -115,8 +115,33 @@
          (*parser (char #\"))
          (*disj 5)
          done))
+         
+(define <SymbolChar> 
+    (new (*parser (range (integer->char 48) (integer->char 57)))
+	 (*parser (range (integer->char 65) (integer->char 90)))
+	 (*parser (range (integer->char 97) (integer->char 122)))
+	 (*parser (char #\!))
+	 (*parser (char #\$))
+	 (*parser (char #\^))
+	 (*parser (char #\*))
+	 (*parser (char #\-))
+	 (*parser (char #\_))
+	 (*parser (char #\=))
+	 (*parser (char #\+))
+	 (*parser (char #\<))
+	 (*parser (char #\>))
+	 (*parser (char #\?))
+	 (*parser (char #\/))
+	 (*disj 15)
+	 done))
+	 
+(define <Symbol>
+    (new (*parser <SymbolChar>)
+    (*parser <SymbolChar>) *star
+    (*disj 2)
+    done))
 
 
   
 (define <sexpr> 
-  ...)
+ ...)
